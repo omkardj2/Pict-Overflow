@@ -13,13 +13,7 @@ function App() {
 
   return (
     <div>
-      <Navbar/>
-      <Footer/>
-      <AboutUs/>
-      <Contact/>
-      <FAQs/>
       <Login/>
-      <TermsOfService/>
       <Signup/>
     </div>
   )
