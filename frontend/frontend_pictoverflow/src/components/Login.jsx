@@ -1,16 +1,14 @@
 import { useState } from "react";
 import { Eye, EyeOff, Loader2 } from "lucide-react";
 
-const Signup = () => {
+const Login = () => {
   const [user, setUser] = useState({
-    name: "",
     email: "",
-    password: "",
-    mobile: "",
+    password: ""
   });
 
-  const [btnLoading, setBtnLoading] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [btnLoading, setBtnLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,10 +22,10 @@ const Signup = () => {
     e.preventDefault();
     setBtnLoading(true);
     
-    // Simulate signup process
+    // Simulate login process
     setTimeout(() => {
       setBtnLoading(false);
-      console.log("Signup attempted with:", user);
+      console.log("Login attempted with:", user);
     }, 2000);
   };
 
@@ -42,8 +40,8 @@ const Signup = () => {
         background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
       }}
     >
-      {/* Signup Card */}
-      <div className="bg-white rounded-3xl shadow-2xl w-full max-w-md p-8 backdrop-blur-sm bg-opacity-95 transition-all duration-300 hover:shadow-3xl hover:scale-105">
+      {/* Login Card */}
+      <div className="bg-white rounded-3xl shadow-2xl w-full max-w-md p-8 backdrop-blur-sm bg-opacity-95">
         {/* Logo/Title */}
         <div className="text-center mb-8">
           <h1 
@@ -57,24 +55,11 @@ const Signup = () => {
           >
             PICTconnect.
           </h1>
-          <p className="text-gray-600 text-sm">Join your campus community</p>
+          <p className="text-gray-600 text-sm">Connect with your campus community</p>
         </div>
 
-        {/* Signup Form */}
+        {/* Login Form */}
         <div className="space-y-6">
-          {/* Username Input */}
-          <div>
-            <input
-              type="text"
-              name="name"
-              value={user.name}
-              onChange={handleChange}
-              placeholder="Username"
-              className="w-full px-6 py-4 rounded-full border-2 border-gray-200 focus:border-purple-400 focus:outline-none transition-all duration-300 text-gray-700 placeholder-gray-400 hover:shadow-lg"
-              required
-            />
-          </div>
-
           {/* Email Input */}
           <div>
             <input
@@ -83,20 +68,7 @@ const Signup = () => {
               value={user.email}
               onChange={handleChange}
               placeholder="Enter email here."
-              className="w-full px-6 py-4 rounded-full border-2 border-gray-200 focus:border-purple-400 focus:outline-none transition-all duration-300 text-gray-700 placeholder-gray-400 hover:shadow-lg"
-              required
-            />
-          </div>
-
-          {/* Mobile Input */}
-          <div>
-            <input
-              type="text"
-              name="mobile"
-              value={user.mobile}
-              onChange={handleChange}
-              placeholder="Mobile number"
-              className="w-full px-6 py-4 rounded-full border-2 border-gray-200 focus:border-purple-400 focus:outline-none transition-all duration-300 text-gray-700 placeholder-gray-400 hover:shadow-lg"
+              className="w-full px-6 py-4 rounded-full border-2 border-gray-200 focus:border-purple-400 focus:outline-none transition-colors text-gray-700 placeholder-gray-400"
               required
             />
           </div>
@@ -109,7 +81,7 @@ const Signup = () => {
               value={user.password}
               onChange={handleChange}
               placeholder="Enter password"
-              className="w-full px-6 py-4 rounded-full border-2 border-gray-200 focus:border-purple-400 focus:outline-none transition-all duration-300 text-gray-700 placeholder-gray-400 pr-12 hover:shadow-lg"
+              className="w-full px-6 py-4 rounded-full border-2 border-gray-200 focus:border-purple-400 focus:outline-none transition-colors text-gray-700 placeholder-gray-400 pr-12"
               required
             />
             <button
@@ -125,7 +97,7 @@ const Signup = () => {
             </button>
           </div>
 
-          {/* Signup Button */}
+          {/* Login Button */}
           <button
             type="submit"
             disabled={btnLoading}
@@ -141,30 +113,46 @@ const Signup = () => {
             {btnLoading ? (
               <>
                 <Loader2 size={20} className="mr-2 animate-spin" />
-                <span>Signing up...</span>
+                <span>Logging in...</span>
               </>
             ) : (
-              "Sign Up"
+              "Login"
             )}
           </button>
         </div>
 
-        {/* Sign In Link */}
+        {/* Footer Links */}
+        <div className="flex justify-between items-center mt-8 text-sm">
+          <button 
+            type="button"
+            className="text-gray-500 hover:text-purple-600 transition-colors"
+          >
+            forgot password?
+          </button>
+          <button 
+            type="button"
+            className="text-gray-500 hover:text-purple-600 transition-colors"
+          >
+            New User?
+          </button>
+        </div>
+
+        {/* Additional Sign Up Link */}
         <div className="text-center mt-6 pt-6 border-t border-gray-100">
           <p className="text-gray-600">
-            Already have an account?{' '}
+            Don't have an account?{' '}
             <button 
               type="button"
               className="font-semibold hover:underline transition-colors"
               style={{ color: '#667eea' }}
             >
-              Login
+              Sign up
             </button>
           </p>
         </div>
       </div>
 
-      {/* Responsive Animated Background - Same as Login */}
+      {/* Responsive Animated Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Floating Orbs with Different Sizes and Speeds */}
         <div className="absolute w-20 h-20 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 rounded-full bg-white bg-opacity-10 animate-float-slow" 
@@ -436,8 +424,19 @@ const Signup = () => {
           }
         }
       `}</style>
+
+      <style jsx>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          33% { transform: translateY(-10px) rotate(1deg); }
+          66% { transform: translateY(-5px) rotate(-1deg); }
+        }
+        .animate-float {
+          animation: float 6s ease-in-out infinite;
+        }
+      `}</style>
     </div>
   );
 };
 
-export default Signup;
+export default Login;
